@@ -60,8 +60,21 @@ ou seja, mudamos de PORTD para PIND quando quisermos ler o valor atual que está
 Além disso, como fizemos antes, devemos setar o data direction register do pino como 0. Logo que estamos tratando de um input.
 Tirando isso, os demais elementos do código já foram descritos no blinky.
 
-## 3. LENDO VALORES ANALÓGICOS:
-aqui é que o bixo pega. E é aqui que eu vou parando logo que ainda não sei exatamente como faz;
+## 4. DAS FUNÇÕES:
+basicamente, a única coisa a se falar aqui é que funções podem ser perigosas de mexer, logo que um instinto inicial lhe fala para simplesmente declarar as funções como void, ou uint8_t, ou qualquer outro tipo que você queira que sua função seja, contudo, as coisas são um pouco mais complicadas que isso, logo que fazer isso geralmente quebra o código todo (confesso que não sei exatamente o porque, sei que tem a ver com o compilador e com o arduino confundir essas funções com a main(), mas tirando isso, não muito.
+como consertar isso? basta declarar as funções como static void, ou static int, etc etc. Por que? não faço ideia. Mas essa é a vida né. Quando eu tiver alguma ideia doque pode estar acontecendo e porque colocar tudo como static conserta, eu venho aqui e atualizo, mas por enquanto vai ficar por essa mesmo. Logo, quando em algum código futuro for lido funções declaradas como statics, é por isso.
+
+## 5. BRINCANDO COM OS TIMERS:
+isso é simplesmente a preparação para mexer com os pinos analógicos. Por que? Porque agora que não podemos nos defender por meio de uma camada de abstração, precisamos implementar tudo à mão. Isso significa mexer com PWM, que por sua vez significa mexer com os timers, e eventualmente até com os componentes internos do arduino responsáveis por essa parte, como o DAC (digital to analog converter), os timers (responsáveis pelo PWM), o Mux dos canais analógicos, etc etc. Enfim, espero ter deixado claro o porque de toda essa preparação para algo que parece trivial, como os pinos analógicos...
+
+Enfim, voltando para os timers, o exercício agora vai ser implementar o blinky sem a biblioteca que implementa o _delay_ms(1000), ou seja, tentaremos recriar essa função do 0, a partir dos registradores dos timers. Aqui a parada fica meio bizonha, então aperte os cintos e tome um café, e vamos direto ao bagui
+
+
+
+
+
+
+
 
 
 
