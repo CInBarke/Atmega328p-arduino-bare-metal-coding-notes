@@ -1,0 +1,25 @@
+#include <avr/io.h>
+#include <util/delay.h>
+
+//PS. NOVAMENTE, EU FIZ ESSE CÓDIGO RUSHADO, ENTÃO SE FOREM DETECTADOS ERROS, AVISEM PLS
+//OQUE ESSE CODIGO FAZ:
+//-ELE LÊ UM VALOR DO PINO 4. CASO ESSE VALOR SEJA 1, ELE ACENDE O LED CONECTADO NO PINO3
+//CASO ELE SEJA 0, ELE DESLIGA AO LED CONECTADO AO PINO3.
+
+int main()
+{
+	DDRD = DDRD | (1 << 3); //PINO 3 É DE OUTPUT.
+	DDRD = DDRD&~ (1 << 4); //PINO 4 É DE OUTPUT.
+	
+	while (1)
+	{	
+		if ((PIND >> 4) & 1 == 1)	//LÊ O VALOR NO PINO 4.
+		{
+			PORTD = PORTD | (1 << 3);//CASO ELE SEJA 1, ACENDA O LED
+		}
+		else
+		{
+			PORTD = PORTD&~ (1 << 3);//CASO CONTRÁRIO, DESLIGA.
+		}
+	}
+}
