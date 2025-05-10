@@ -39,13 +39,10 @@ A linha acima atua mudando o valor contido no "data direction register) para o P
 #### 2. O resto:
 o while(1) está sendo usado de modo a criar um loop infinito. Depois, oque fazemos é ligar e desligar o pino 3 do PORTD, isso é feito nas linhas:
 
-  PORTD = PORTD | (1 << 3); //pino 3 do PORTD recebe nível lógico 1.
-  
-  _delay_ms(1000);          //delay de 1000ms, ou 1s.
-  
-  PORTD = PORTD&~ (1 << 3); //pino 3 do PORTD recebe nível lógico 0.
-  
-  _delay_ms(1000);          //delay de 1000ms, ou 1s.
+  PORTD = PORTD | (1 << 3); //pino 3 do PORTD recebe nível lógico 1. <br />
+  _delay_ms(1000);          //delay de 1000ms, ou 1s. <br />
+  PORTD = PORTD&~ (1 << 3); //pino 3 do PORTD recebe nível lógico 0. <br />
+  _delay_ms(1000);          //delay de 1000ms, ou 1s. <br />
   
 creio que essa parte seja bem autoexplicativa. Mas em resumo, os estados dos pinos é modificado através do registrador PORTN, nesse caso, PORTD. Logo, que queremos colocar o 3 pino desse port (que é o pino digital 3) com determinado nível lógico, basta alterar o valor que está armazenado no PORTD que o representa, ou seja, o bit 3 desse registrador. Caso quiséssemos alterar o pino digital 2, alteraríamos o 2 bit do PORTD, e assim por diante.
 
