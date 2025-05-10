@@ -48,10 +48,20 @@ creio que essa parte seja bem autoexplicativa. Mas em resumo, os estados dos pin
 
 ## 2. LENDO INPUTS DIGITAIS:
 agora que sabemos como alterar o nível lógico dos pinos digitais, vamos aprender como ler o valor escrito neles por algum sensor, ou qualquer outra coisa que você quiser ler o valor de saída:
+um impulso inicial que eu tive foi fazer simplesmente:
 
+uint8_t state = (PORTD >> n) & 1;
 
+logo que assim, o n'esimo bit (o bit do pino que queremos ler) vai até o bit 0 (por causa do shift right), e os demais bits se tornam 0 por causa da operação AND, efetuada como X & 000001. Logo que X & 0 = 0, todos os outros bits viram 0, portanto, se o n'esimo bit original for 0, o resultado da operação é 0. Caso o n'esimo bit for 1, o resultado da operação é 1. Porém, isso não funciona, logo que PORTD contêm somente os valores escritos, e não contêm os valores reais que estão armazenados no pino em tempo real. Para fazer isso, fazemos:
 
+uint8_t state = (PIND >> n) & 1;
 
+ou seja, mudamos de PORTD para PIND quando quisermos ler o valor atual que está no pino.
+Além disso, como fizemos antes, devemos setar o data direction register do pino como 0. Logo que estamos tratando de um input.
+Tirando isso, os demais elementos do código já foram descritos no blinky.
+
+## 3. LENDO VALORES ANALÓGICOS:
+aqui é que o bixo pega. E é aqui que eu vou parando logo que ainda não sei exatamente como faz;
 
 
 
